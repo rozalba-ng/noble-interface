@@ -1,0 +1,63 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+	
+	
+	<Texture name="StormSysTexture1" file="Interface\FrameXML\Noble_StormwindSystem\uiframealliance" virtual="true" >
+		<Size x="193.8" y="329.08"/>	
+		<TexCoords left="0.00000000" right="0.249" top="0.15" bottom="0.576"/>	
+	</Texture>
+	
+	<Texture name="StormSysTexture2" file="Interface\FrameXML\Noble_StormwindSystem\uiframealliance" virtual="true" >
+		<Size x="199.12" y="50.16"/>	
+		<TexCoords left="0.644" right="0.9" top="0.792" bottom="0.856"/>	
+	</Texture>
+	
+	
+	
+	<Button name="StormTemplate1" virtual="true">
+		<Size x="355" y="435"/>	
+		<HitRectInsets>
+			<AbsInset left="-12" right="-12" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentText1" inherits="StormSysTexture1">
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0"/>	
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">	
+				<Texture name="$parentText2" inherits="StormSysTexture2">
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="151"/>	
+					</Anchors>
+				</Texture>
+				<FontString name="$parentHeaderTitle" parentKey="Header" inherits="GameFontNormalMed3" text="123123f">
+				<Color r="0.973" g="0.902" b="0.581"/>
+				  <Anchors>
+					<Anchor point="CENTER" x="0" y="153"/>
+				  </Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="HIGHLIGHT">	
+
+			</Layer>
+		</Layers>
+		<NormalFont style="GameFontNormal"/>
+		<ButtonText>
+			<Anchors>
+				<Anchor point="CENTER" x="0" y="160"/>
+			</Anchors>
+		</ButtonText>
+		<Scripts>
+			<OnLoad>
+			</OnLoad>
+			<OnEnable>
+			</OnEnable>
+			<OnDisable>
+			</OnDisable>
+		</Scripts>
+	</Button>
+</Ui>

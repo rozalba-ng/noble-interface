@@ -1,0 +1,76 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+    
+    <Button name="TransmogSelectTabButtonTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="30" y="30"/>
+        </Size>
+        <Layers>
+        <Layer level="ARTWORK">
+            <Texture file="Interface\NobleProject\Transmog\IMG\IconBorder.blp">
+					<Size>
+						<AbsDimension x="45" y="45"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+			</Texture>
+        </Layer>
+        </Layers>
+        <Scripts>
+         <OnLoad>
+           self:RegisterForClicks("AnyUp");
+         </OnLoad>
+        </Scripts>
+    </Button>
+    
+    <Button name="GoldenFrameSelectTabTemplate" virtual="true" level= "3" >
+        <Size>
+            <AbsDimension x="44" y="44"/>
+        </Size>
+        <Anchors>
+			<Anchor point="CENTER" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="-2.5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+        <NormalTexture file="Interface\NobleProject\Transmog\IMG\Icons\GoldFrame.blp">
+        </NormalTexture>
+    </Button>
+    
+    <Button name="BarberButtonLeftTemplate" virtual="true" >
+        <Size>
+            <AbsDimension x="35" y="35"/>
+        </Size>
+        <Anchors>
+			<Anchor point="CENTER" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="-80" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+        <NormalTexture file="Interface\BUTTONS\UI-SpellbookIcon-PrevPage-Up"/>
+        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+    </Button>
+    
+    <Button name="BarberButtonRightTemplate" virtual="true" >
+        <Size>
+            <AbsDimension x="35" y="35"/>
+        </Size>
+        <Anchors>
+			<Anchor point="CENTER" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="80" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+        <NormalTexture file="Interface\BUTTONS\UI-SpellbookIcon-NextPage-Up"/>
+        <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+        <PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+    </Button>
+</Ui>

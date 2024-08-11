@@ -1,0 +1,19 @@
+## Interface: 30300
+## Title: |cffff9716[N] |rUCM аддон
+## Version: 1.7.1beta
+## Author: Cyprias@gmail.com
+## SavedVariables: UCM_DB
+## X-Curse-Packaged-Version: 1.7.1beta
+## X-Curse-Project-Name: UnlimitedChatMessage
+## X-Curse-Project-ID: unlimitedchatmessage
+## X-Curse-Repository-ID: wow/unlimitedchatmessage/mainline
+
+## LoadManagers: AddonLoader
+## X-LoadOn-Always: true
+
+#@no-lib-strip@
+embeds.xml
+#@end-no-lib-strip@
+
+locales.xml
+core.lua

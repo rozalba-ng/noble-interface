@@ -1,0 +1,419 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<!-- КНОПКА открытия меню контроля питомца -->
+	<Button name="PetControlButton" hidden="true">
+		<Size x="22" y="22" />
+		<Anchors>
+			<Anchor point="LEFT" relativePoint="RIGHT" relativeto="TargetFrame">
+			  <Offset>
+				<AbsDimension x="-30" y="20" />
+			  </Offset>
+			</Anchor>
+		</Anchors>
+		<NormalTexture file="Interface\AddOns\PetControl\IMG\foot.blp"/>
+		<DisabledTexture file="Interface\AddOns\PetControl\IMG\foot_Disabled.blp"/>
+		<HighlightTexture file="Interface\AddOns\PetControl\IMG\foot_Hover.blp"/>
+		<Scripts>
+			<OnLoad>
+				PetControl.Tooltip( self, "Управление спутником" )
+			</OnLoad>
+			<OnClick>
+				if PetControlFrame:IsVisible() then
+					PetControl.EditBox.Hide()
+					PetControlFrame:Hide()
+				else
+					PetControlFrame:Show()
+				end
+			</OnClick>
+		</Scripts>
+	</Button>
+	<!-- МЕНЮ контроля питомца -->
+	<Frame name="PetControlFrame" enableMouse="true" hidden="true">
+		<Scripts>
+			<OnLoad>
+				self:RegisterEvent("PLAYER_TARGET_CHANGED")
+			</OnLoad>
+			<OnEvent>
+				self:Hide()
+			</OnEvent>
+		</Scripts>
+		<Size x="165" y = "40" />
+		<Anchors>
+			<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeto="PetControlButton">
+			  <Offset>
+				<AbsDimension x="4" y="5" />
+			  </Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\AddOns\PetControl\IMG\frame_background.blp" edgeFile="Interface\DialogFrame\UI-DialogBox-Gold-Border" tile="true">
+			<EdgeSize val="16"/>
+			<TileSize val="50"/>
+			<BackgroundInsets left="5" right="5" top="5" bottom="5"/>
+		</Backdrop>
+		<Frames>
+			<!-- BYTE1 - Стоять/Сидеть/Лежать -->
+			<Button name="$parent_ByteButton">
+				<Size x="22" y="22" />
+				<Anchors>
+					<Anchor point="LEFT" relativeto="$parent">
+					  <Offset>
+						<AbsDimension x="12" y="0" />
+					  </Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="PetControlTexture_Byte" file="Interface\AddOns\PetControl\IMG\button_byte.blp">
+							<Size>
+								<AbsDimension x="22" y="22"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.5" top="0" bottom="0.5"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						PetControl.Tooltip( self, "Положение" )
+						self:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+					</OnLoad>
+					<OnClick>
+						PetControl.EditBox.Hide()
+						if arg1 == "LeftButton" then
+							PetControl.ByteTexture( PetControlTexture_Byte, PetControl.status.last_byte )
+						else
+							if PetControlFrame_ByteButton_Submenu:IsVisible() then
+								PetControlFrame_ByteButton_Submenu:Hide()
+							else
+								PetControlFrame_ByteButton_Submenu:Show()
+
+								local btn1 = PetControlFrame_ByteButton_Submenu_Btn1
+								local btn2 = PetControlFrame_ByteButton_Submenu_Btn2
+								if PetControl.status.byte1 == 0 then -- Стоит
+									btn1:SetTexCoord(0.5, 1, 0, 0.5 ) -- Сидит
+									btn2:SetTexCoord(0, 0.5, 0.5, 0.9 ) -- Лежит
+								elseif PetControl.status.byte1 == 1 then -- Сидит
+									btn1:SetTexCoord(0, 0.5, 0, 0.5 )  -- Стоит
+									btn2:SetTexCoord(0, 0.5, 0.5, 0.9 ) -- Лежит
+								else -- Лежит
+									btn1:SetTexCoord(0, 0.5, 0, 0.5 ) -- Стоит
+									btn2:SetTexCoord(0.5, 1, 0, 0.5 ) -- Сидит
+								end
+								
+							end
+						end
+					</OnClick>
+				</Scripts>
+				<Frames>
+					<Frame name="$parent_Submenu" hidden="true">
+						<Size x="40" y="22" />
+						<Anchors>
+							<Anchor point="TOP" relativePoint="BOTTOM" relativeto="$parent">
+								<Offset>
+									<AbsDimension x="0" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture file="Interface\AddOns\PetControl\IMG\button_byte.blp">
+									<Size>
+										<AbsDimension x="22" y="22"/>
+									</Size>
+									<Anchors>
+										<Anchor point="CENTER">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0.7" right="1" top="0.7" bottom="1"/>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Button>
+								<Size x="22" y="22" />
+								<Anchors>
+									<Anchor point="TOP" relativePoint="BOTTOM" relativeto="$parent">
+										<Offset>
+											<AbsDimension x="12" y="13" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer level="OVERLAY">
+										<Texture name="$parent_Btn1" file="Interface\AddOns\PetControl\IMG\button_byte.blp">
+											<Size>
+												<AbsDimension x="22" y="22"/>
+											</Size>
+											<Anchors>
+												<Anchor point="CENTER">
+													<Offset>
+														<AbsDimension x="0" y="0"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+											<TexCoords left="0" right="0.5" top="0" bottom="0.5"/>
+										</Texture>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnClick>
+										if PetControl.status.byte1 == 0 then
+											PetControl.ByteTexture( PetControlTexture_Byte, 1 )
+										else
+											PetControl.ByteTexture( PetControlTexture_Byte, 0 )
+										end
+									</OnClick>
+								</Scripts>
+							</Button>							
+							<Button>
+								<Size x="22" y="22" />
+								<Anchors>
+									<Anchor point="TOP" relativePoint="BOTTOM" relativeto="$parent">
+										<Offset>
+											<AbsDimension x="-12" y="13" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer level="OVERLAY">
+										<Texture name="$parent_Btn2" file="Interface\AddOns\PetControl\IMG\button_byte.blp">
+											<Size>
+												<AbsDimension x="22" y="22"/>
+											</Size>
+											<Anchors>
+												<Anchor point="CENTER">
+													<Offset>
+														<AbsDimension x="0" y="0"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+											<TexCoords left="0" right="0.5" top="0" bottom="0.5"/>
+										</Texture>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnClick>
+										if PetControl.status.byte1 == 3 then
+											PetControl.ByteTexture( PetControlTexture_Byte, 1 )
+										else
+											PetControl.ByteTexture( PetControlTexture_Byte, 3 )
+										end
+									</OnClick>
+								</Scripts>
+							</Button>
+						</Frames>
+					</Frame>
+				</Frames>
+			</Button>
+			<!-- Стоять/Следовать -->
+			<Button name="$parent_FollowButton">
+				<Size x="22" y="22" />
+				<Anchors>
+					<Anchor point="LEFT" relativeto="$parent_ByteButton" relativePoint="RIGHT">
+					  <Offset>
+						<AbsDimension x="8" y="0" />
+					  </Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="PetControlTexture_Follow" file="Interface\AddOns\PetControl\IMG\button_follow.blp">
+							<Size>
+								<AbsDimension x="22" y="22"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.5" top="0" bottom="1"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						PetControl.Tooltip( self, "Тип следования" )
+					</OnLoad>
+					<OnClick>
+						PetControl.EditBox.Hide()
+						PetControl.FollowButton( PetControlTexture_Follow )
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!-- Говорить -->
+			<Button name="$parent_SayButton">
+				<Size x="22" y="22" />
+				<Anchors>
+					<Anchor point="LEFT" relativeto="$parent_FollowButton" relativePoint="RIGHT">
+					  <Offset>
+						<AbsDimension x="8" y="0" />
+					  </Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface\AddOns\PetControl\IMG\button_say.blp">
+							<Size>
+								<AbsDimension x="22" y="22"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="1" top="0" bottom="1"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						PetControl.Tooltip( self, "Реплика от лица спутника" )
+					</OnLoad>
+					<OnClick>
+						if PetControlFrame_EditBox_Frame:IsVisible() and PetControl.EditBox.Status == "say" then
+							PetControl.EditBox.Hide()
+						else
+							PetControl.EditBox.Show("say")
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!-- EditBox -->
+			<Button name ="PetControlFrame_EditBox_Frame" hidden="true">
+				<Size x="300" y="128" />
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeto="$parent">
+						<Offset x="0" y="0" />
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\AddOns\PetControl\IMG\frame_background.blp" edgeFile="Interface\DialogFrame\UI-DialogBox-Gold-Border" tile="true">
+					<EdgeSize val="16"/>
+					<TileSize val="128"/>
+					<BackgroundInsets left="5" right="5" top="5" bottom="5"/>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						self:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+					</OnLoad>
+					<OnClick>
+						PetControlFrame_EditBox:SetFocus()
+					</OnClick>
+				</Scripts>
+				<Frames>
+					<EditBox name="PetControlFrame_EditBox" letters="250" autofocus="false" multiLine="true">
+						<Size x="276" y="98" />
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeto="$parent">
+								<Offset x="12" y="-15" />
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								self:SetScript( "OnEscapePressed", function(self) self:ClearFocus() end )
+								PetControl.EditBox.ScrollFrame( self )
+								self:Show()
+							</OnLoad>
+						</Scripts>
+						<FontString inherits="GameFontHighlight" />
+					</EditBox>
+				</Frames>
+			</Button>
+
+			<!-- Эмоция -->
+			<Button name="$parent_EmoteButton">
+				<Size x="22" y="22" />
+				<Anchors>
+					<Anchor point="LEFT" relativeto="$parent_SayButton" relativePoint="RIGHT">
+					  <Offset>
+						<AbsDimension x="8" y="0" />
+					  </Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture file="Interface\AddOns\PetControl\IMG\button_emote.blp">
+							<Size>
+								<AbsDimension x="20" y="30"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="1" top="0" bottom="1"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						PetControl.Tooltip( self, "Действие от лица спутника" )
+					</OnLoad>
+					<OnClick>
+						if PetControlFrame_EditBox_Frame:IsVisible() and PetControl.EditBox.Status == "emote" then
+							PetControl.EditBox.Hide()
+						else
+							PetControl.EditBox.Show("emote")
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+			<!-- Анимация -->
+			<Button name="$parent_EmoteButton">
+				<Size x="22" y="22" />
+				<Anchors>
+					<Anchor point="LEFT" relativeto="$parent_EmoteButton" relativePoint="RIGHT">
+					  <Offset>
+						<AbsDimension x="8" y="0" />
+					  </Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="PetControlTexture_Animation" file="Interface\AddOns\PetControl\IMG\button_animation.blp">
+							<Size>
+								<AbsDimension x="22" y="22"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="1" top="0" bottom="1"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						PetControl.Tooltip( self, "Анимация" )
+					</OnLoad>
+					<OnClick>
+						PetControl.EditBox.Hide()
+						if Noble_AnimlistMainPanel:IsVisible() then
+							Noble_AnimlistMainPanel:Hide()
+						else
+							Noble_AnimlistMainPanel:Show()
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

@@ -1,0 +1,358 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="structures.lua"/>
+	<Script file="Blizzard_TalkingHeadUI.lua"/>
+
+	<Button name="TalkingHeadFrame" toplevel="true" parent="UIParent" hidden="true" frameStrata="DIALOG" frameLevel="1">
+		<Size x="513" y="139.5"/>
+		<Anchors>
+			<Anchor point="BOTTOM" x="0" y="96"/>
+		</Anchors>
+		<Frames>
+			<Frame parentKey="NameFrame" useParentLevel="true">
+				<Size x="324" y="27"/>
+				<Anchors>
+					<Anchor point="TOP" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="Name" inherits="Fancy22Font" alpha="0.01" alphaMode="BLEND" justifyH="LEFT" justifyV="TOP">
+							<Size x="324" y="27"/>
+							<Anchors>
+								<Anchor point="RIGHT" x="43" y="-20"/>
+							</Anchors>
+							<Color r="1" g=".82" b="0"/>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Animations>
+					<AnimationGroup parentKey="Fadein">
+						<Alpha change="-1" duration="0" order="1"/>
+						<Alpha change="1" duration="0.25" startDelay="0.35" order="2"/>
+							<Scripts>
+								<OnPlay>
+									self:GetParent():Show()
+								</OnPlay>
+								<OnFinished>
+									self:GetParent():Show()
+								</OnFinished>
+						</Scripts>
+					</AnimationGroup>
+					<AnimationGroup parentKey="Fadeout" setToFinalAlpha="true">
+							<Alpha change="1" duration="0" order="1"/>
+							<Alpha change="-1" duration="0.25" order="2"/>
+							<Scripts>
+								<OnPlay>
+									self:GetParent():Show()
+								</OnPlay>
+								<OnFinished>
+									self:GetParent():Hide()
+								</OnFinished>
+							</Scripts>
+					</AnimationGroup>
+					<AnimationGroup parentKey="Close" setToFinalAlpha="true">
+						<Alpha childKey="Name" startDelay="0" duration="1" order="1" fromAlpha="1" toAlpha="0"/>
+					</AnimationGroup>
+				</Animations>
+			</Frame>
+			<Frame parentKey="TextFrame" useParentLevel="true">
+				<Size x="351" y="80"/>
+				<Anchors>
+					<Anchor point="TOP" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="Text" alpha="0.99" alphaMode="BLEND" justifyH="LEFT" justifyV="TOP">
+							<Size x="351" y="70"/>
+							<Anchors>
+								<Anchor point="RIGHT" x="55" y="-36"/>
+							</Anchors>
+						</FontString>
+						<FontString parentKey="Author" alpha="0.99" alphaMode="BLEND" justifyH="LEFT" justifyV="TOP">
+							<Size x="180" y="5"/>
+							<Anchors>
+								<Anchor point="RIGHT" x="-130" y="-87"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Animations>
+					<AnimationGroup parentKey="Fadein">
+						<Alpha change="-1" duration="0" order="1"/>
+						<Alpha change="1" duration="0.35" startDelay="0.65" order="2"/>
+							<Scripts>
+								<OnPlay>
+									self:GetParent():Show()
+								</OnPlay>
+								<OnFinished>
+									self:GetParent():Show()
+								</OnFinished>
+						</Scripts>
+					</AnimationGroup>
+					<AnimationGroup parentKey="Fadeout" setToFinalAlpha="true">
+							<Alpha change="-1" duration="0.25" order="1"/>
+							<Alpha change="1" duration="0.35" order="2"/>
+							<Scripts>
+								<OnPlay>
+									self:GetParent():Show()
+								</OnPlay>
+								<OnFinished>
+									self:GetParent():Show()
+								</OnFinished>
+							</Scripts>
+					</AnimationGroup>
+					<AnimationGroup parentKey="Close" setToFinalAlpha="true">
+						<Alpha childKey="Text" startDelay="0" duration="1" order="1" fromAlpha="1" toAlpha="0"/>
+					</AnimationGroup>
+				</Animations>
+			</Frame>
+			<Frame parentKey="AuthorFrame" useParentLevel="true">
+				<Size x="351" y="72"/>
+				<Anchors>
+					<Anchor point="TOP" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="Text" alpha="0.99" alphaMode="BLEND" justifyH="LEFT" justifyV="TOP">
+							<Size x="180" y="5"/>
+							<Anchors>
+								<Anchor point="RIGHT" x="-115" y="-80"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Animations>
+					<AnimationGroup parentKey="Fadein">
+						<Alpha change="-1" duration="0" order="1"/>
+						<Alpha change="1" duration="0.35" startDelay="0.65" order="2"/>
+							<Scripts>
+								<OnPlay>
+									self:GetParent():Show()
+								</OnPlay>
+								<OnFinished>
+									self:GetParent():Show()
+								</OnFinished>
+						</Scripts>
+					</AnimationGroup>
+				</Animations>
+			</Frame>
+			<Frame parentKey="BackgroundFrame" setAllPoints="true" useParentLevel="true" >
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture parentKey="TextBackground" hidden="false" alpha="0.99" alphaMode="BLEND" />
+					</Layer>	
+				</Layers>
+				<Animations>
+					<AnimationGroup parentKey="Fadein">												
+						<Alpha change="-1" duration="0" startDelay="0" order="1"/>
+						<Alpha change="1" duration="0.75" startDelay="0.4" order="2"/>
+						<Scripts>
+							<OnPlay>
+								self:GetParent():Show()
+							</OnPlay>
+							<OnFinished>
+								self:GetParent():Show()
+							</OnFinished>
+						</Scripts>
+					</AnimationGroup>
+				</Animations>
+			</Frame>
+			<Frame parentKey="PortraitFrame" setAllPoints="true">
+			</Frame>
+			<Frame parentKey="MainFrame" setAllPoints="true" useParentLevel="true">
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture parentKey="Sheen" hidden="false" alpha="0.01" alphaMode="ADD" >
+							<Anchors>
+								<Anchor point="LEFT" relativeKey="$parent.$parent.NameFrame.Name" x="130" y="42"/>
+							</Anchors>
+							<Animations>
+								<AnimationGroup parentKey="Fadein">										
+									<Alpha change="-1" duration="0" startDelay="0" order="1"/>
+									<Alpha change="0.6" duration="0.5" startDelay="0.4" order="2"/>
+									<Alpha change="-1" duration="0.5" startDelay="0.01" order="3"/>
+									<Scripts>
+										<OnPlay>
+											self:GetParent():Show()
+										</OnPlay>
+										<OnFinished>
+											self:GetParent():Hide()
+										</OnFinished>
+									</Scripts>
+								</AnimationGroup>
+							</Animations>
+						</Texture>
+						<Texture parentKey="TextSheen" hidden="false" alpha="0.01" alphaMode="ADD" >
+							<Anchors>
+								<Anchor point="LEFT" relativeKey="$parent.$parent.TextFrame.Text" x="130" y="0"/>
+							</Anchors>
+							<Animations>
+								<AnimationGroup parentKey="Fadein">										
+									<Alpha change="-1" duration="0" startDelay="0" order="1"/>
+									<Alpha change="0.6" duration="0.5" startDelay="0.65" order="2"/>
+									<Alpha change="-1" duration="0.5" startDelay="0.01" order="3"/>
+									<Scripts>
+										<OnPlay>
+											self:GetParent():Show()
+										</OnPlay>
+										<OnFinished>
+											self:GetParent():Hide()
+										</OnFinished>
+									</Scripts>
+								</AnimationGroup>
+							</Animations>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<PlayerModel parentKey="Model" alpha="1" alphaMode="BLEND" >
+						<Size x="103.5" y="103.5"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" x="21" y="-21"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture parentKey="PortraitBg" hidden="false" alpha="0.99" alphaMode="BLEND" >
+									<Anchors>
+										<Anchor point="TOPLEFT"/>
+									</Anchors>
+								</Texture>
+							</Layer>
+							<Layer level="OVERLAY">
+								<Texture parentKey="Portrait" hidden="false" alpha="0.99" alphaMode="BLEND" >
+									<Anchors>
+										<Anchor point="TOPLEFT" x="-14.5" y="14"/>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>
+							</OnLoad>
+							<OnEvent>
+							</OnEvent>
+						</Scripts>
+						<Animations>
+							<AnimationGroup parentKey="Fadein">												
+								<Alpha change="-1" duration="0" startDelay="0" order="1"/>
+								<Alpha change="1" duration="0.75" startDelay="0.01" order="2"/>
+									<Scripts>
+										<OnPlay>
+											self:GetParent():Show()
+										</OnPlay>
+										<OnFinished>
+											self:GetParent():Show()
+										</OnFinished>
+									</Scripts>
+							</AnimationGroup>
+						</Animations>
+					</PlayerModel>
+					<Frame parentKey="Overlay">
+						<Size x="86,4" y="86,4"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" x="21" y="-17"/>
+						</Anchors>
+						<Layers>
+							<Layer level="OVERLAY" textureSubLevel="1">
+								<Texture parentKey="Glow_TopBar" hidden="false" alpha="0.01" alphaMode="ADD" >
+									<Anchors>
+										<Anchor point="CENTER" relativeKey="$parent.$parent.$parent.PortraitFrame.Portrait" relativePoint="TOP" x="8" y="0"/>
+									</Anchors>
+									<Animations>
+										<AnimationGroup parentKey="Fadein">										
+											<Alpha change="-1" duration="0" startDelay="0" order="1"/>
+											<Alpha change="0.7" duration="0.25" startDelay="0" order="2"/>
+											<Scale startDelay="0" duration="0" ScaleX="0.25" scaleY="1" order="2"/>
+											<Scale startDelay="0" duration="0.2" ScaleX="5.5" scaleY="0.75" smoothing="IN" order="3"/>
+											<Alpha change="-1" duration="0.5" startDelay="0.4" order="3"/>
+												<Scripts>
+													<OnPlay>
+														self:GetParent():Show()
+													</OnPlay>
+													<OnFinished>
+														self:GetParent():Hide()
+													</OnFinished>
+												</Scripts>
+										</AnimationGroup>
+									</Animations>
+								</Texture>
+								<Texture parentKey="Glow_LeftBar" hidden="false" alpha="0.01" alphaMode="ADD" >
+									<Anchors>
+										<Anchor point="CENTER" relativeKey="$parent.$parent.$parent.PortraitFrame.Portrait" relativePoint="LEFT" x="-4" y="20"/>
+									</Anchors>
+									<Animations>
+										<AnimationGroup parentKey="Fadein">												
+											<Alpha change="-1" duration="0" startDelay="0" order="1"/>
+											<Alpha change="0.7" duration="0.10" startDelay="0.46" order="2"/>
+											<Translation startDelay="0.05" duration="0.8" offsetX="0" offsetY="-70" order="3"/>
+											<Scale startDelay="0.35" duration="0.7" ScaleX="0.8" ScaleY="1.3" order="3"/>
+											<Alpha change="-1" duration="0.35" startDelay="0.35" order="3" />
+												<Scripts>
+													<OnPlay>
+														self:GetParent():Show()
+													</OnPlay>
+													<OnFinished>
+														self:GetParent():Hide()
+													</OnFinished>
+												</Scripts>
+										</AnimationGroup>
+									</Animations>
+								</Texture>
+								<Texture parentKey="Glow_RightBar" hidden="false" alpha="0.01" alphaMode="ADD" >
+									<Anchors>
+										<Anchor point="CENTER" relativeKey="$parent.$parent.$parent.PortraitFrame.Portrait" relativePoint="RIGHT" x="19" y="20"/>
+									</Anchors>
+									<Animations>
+										<AnimationGroup parentKey="Fadein">												
+											<Alpha change="-1" duration="0" startDelay="0" order="1"/>
+											<Alpha change="0.7" duration="0.10" startDelay="0.46" order="2"/>
+											<Translation startDelay="0.05" duration="0.8" offsetX="0" offsetY="-70" order="3"/>
+											<Scale startDelay="0.35" duration="0.7" ScaleX="0.8" ScaleY="1.3" order="3"/>
+											<Alpha change="-1" duration="0.35" startDelay="0.35" order="3" />
+												<Scripts>
+													<OnPlay>
+														self:GetParent():Show()
+													</OnPlay>
+													<OnFinished>
+														self:GetParent():Hide()
+													</OnFinished>
+												</Scripts>
+										</AnimationGroup>
+									</Animations>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Frame>
+					<Button parentKey="CloseButton" inherits="UIPanelCloseButton" alpha="0.99" alphaMode="BLEND">
+						<Anchors>
+							<Anchor point="TOPRIGHT" x="-12" y="-12"/> 
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								TalkingHeadFrame_CloseImmediately();
+							</OnClick>
+						</Scripts>
+						<Animations>
+					<AnimationGroup parentKey="Fadein">												
+						<Alpha change="-1" duration="0" startDelay="0" order="1"/>
+						<Alpha change="1" duration="0.75" startDelay="0.4" order="2"/>
+						<Scripts>
+							<OnPlay>
+								self:GetParent():Show()
+							</OnPlay>
+							<OnFinished>
+								self:GetParent():Show()
+							</OnFinished>
+						</Scripts>
+						</AnimationGroup>
+					</Animations>
+					</Button>
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad function="TalkingHeadFrame_OnLoad"/>
+			<OnClick function="TalkingHeadFrame_OnClick"/>
+		</Scripts>
+	</Button>
+</Ui>

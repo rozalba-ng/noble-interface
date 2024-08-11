@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: |cffff9716[N]|r Магазин объектов
+## Notes-ruRU: Интерфейс покупки переносных игровых объектов.
+## DefaultState: Enabled
+## Dependencies: AIO_Client
+## SavedVariables: GoShopMemory
+## SavedVariables: GoShopFavorite
+
+embeds.xml
+GameObjectShop.lua

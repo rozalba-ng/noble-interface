@@ -1,0 +1,23 @@
+## Interface: 30300
+## Title: |cffff9716[N] |rАддон для ДМ-доступа
+## Version: 1.0
+## Notes: DMPanelNoble
+## Dependencies: AIO_Client, Noble_UI
+## SavedVariables: MinMapDB
+## LoadOnDemand: 1
+## DefaultState: Enabled
+
+embeds.xml
+UITemplates.xml
+bindings.lua
+bindings.xml
+
+Core.lua
+BindingsUpdate.lua
+MinimapButton.lua
+SearchAndDel.lua
+BattlePanel.lua
+WayPoints.lua
+
+
+GobAPI.lua

@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: |cffff9716[N]|r Характеристики
+## Notes-ruRU: Аддон для изменение параметров персонажа
+## DefaultState: Enabled
+## Dependencies: AIO_Client
+## SavedVariablesPerCharacter: CharacterStats
+## SavedVariablesPerCharacter: LastUpdate
+CharacterStats.lua

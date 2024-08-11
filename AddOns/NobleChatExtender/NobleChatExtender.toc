@@ -1,0 +1,11 @@
+## Interface: 30300
+## Title: |cffff9716[N] |rРасширение чата
+## Version: 1.0
+## Dependencies: AIO_Client
+## Dependencies: Noble_UI
+## SavedVariablesPerCharacter: CHAR_INFO
+## SavedVariablesPerCharacter: CHARS_INFO_LIST
+## SavedVariablesPerCharacter: SAVED_CHATBOX
+## SavedVariables: NCE_MinMapDB
+
+NobleChatExtender.lua

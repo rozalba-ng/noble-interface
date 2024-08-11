@@ -1,0 +1,361 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<Script file="DescriptionFrame.lua"/>
+	<Frame name="DescriptionFrame" setAllPoints="true" parent="CharacterFrame" enableMouse="true" hidden="true" id="5">
+		<HitRectInsets>
+			<AbsInset left="0" right="30" top="0" bottom="75"/>
+		</HitRectInsets>
+		<Layers>
+			<Layer level="BACKGROUND">
+                <Texture file="Interface\ItemTextFrame\UI-ItemText-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\Spellbook\UI-SpellbookPanel-TopRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\ItemTextFrame\UI-ItemText-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\Spellbook\UI-SpellbookPanel-BotRight">
+					<Size>
+						<AbsDimension x="128" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>		
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="DescriptionFrameBar">
+				<Size x="331" y="26"/>
+				<Anchors>
+					<Anchor point="LEFT">
+						<Offset x="20" y="0"/>
+					</Anchor>
+					<Anchor point="RIGHT">
+						<Offset x="-36" y="0"/>
+					</Anchor>
+					<Anchor point="BOTTOM">
+						<Offset x="0" y="81"/>
+					</Anchor>
+				</Anchors>
+<!-- 				<Layers>
+					<Layer level="BORDER">
+						<Texture name="$parentButtonBorder" file="Interface\Buttons\UI-Button-Borders2">
+							<Size x="84" y="26"/>
+							<Anchors>
+								<Anchor point="RIGHT"/>
+							</Anchors>
+							<TexCoords left="0.16015625" right="0.3125" top="0.0" bottom="0.203125"/>
+						</Texture>
+					</Layer>
+				</Layers> -->
+				<Frames>
+<!-- 					<Button name="DescriptionFrameSiteButton" inherits="UIPanelButtonTemplate" text="На сайте">
+						<Size x="80" y="22"/>
+						<Anchors>
+							<Anchor point="RIGHT">
+								<Offset x="-4" y="0"/>
+							</Anchor>
+						</Anchors>
+					</Button> -->
+					<Frame name="DescriptionFrameBarFiller">
+						<Size x="296" y="26"/>
+						<Anchors>
+							<Anchor point="LEFT"/>
+							<!-- <Anchor point="RIGHT" relativeTo="$parentButtonBorder" relativePoint="LEFT"> -->
+							<Anchor point="RIGHT">
+								<Offset x="0" y="0"/>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentButtonBackgroundLeft" file="Interface\Buttons\UI-Button-Borders2">
+									<Size x="8" y="26"/>
+									<Anchors>
+										<Anchor point="LEFT"/>
+										<Anchor point="TOP"/>
+										<Anchor point="BOTTOM"/>
+									</Anchors>
+									<TexCoords left="0.470703125" right="0.484375" top="0.0" bottom="0.203125"/>
+								</Texture>
+								<Texture name="$parentButtonBackgroundRight" file="Interface\Buttons\UI-Button-Borders2">
+									<Size x="8" y="26"/>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+										<Anchor point="TOP"/>
+										<Anchor point="BOTTOM"/>
+									</Anchors>
+									<TexCoords left="0.78515625" right="0.80078125" top="0.0" bottom="0.203125"/>
+								</Texture>
+								<Texture name="$parentButtonBackgroundMiddle" file="Interface\Buttons\UI-Button-Borders2">
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentButtonBackgroundLeft" relativePoint="TOPRIGHT"/>
+										<Anchor point="BOTTOMRIGHT" relativeTo="$parentButtonBackgroundRight" relativePoint="BOTTOMLEFT"/>
+									</Anchors>
+									<TexCoords left="0.484375" right="0.78515625" top="0.0" bottom="0.203125"/>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Frame>
+				</Frames>
+			</Frame>
+            <ScrollFrame name="DescriptionFrameScrollFrame" inherits="UIPanelScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="296" y="332"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-65" y="-77"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOM" relativeTo="DescriptionFrameBar" relativePoint="TOP">
+						<Offset x="0" y="0"/>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="256"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-2" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.484375" top="0" bottom="1.0"/>
+						</Texture>
+						<Texture name="$parentBottom" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="106"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="-2" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625"/>
+						</Texture>
+					</Layer>
+                    <Layer level="BACKGROUND">
+						<Texture>
+							<Size>
+								<AbsDimension x="28" y="332"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parentTop"/>
+							</Anchors>
+							<Color r="0" g="0" b="0" a="0.8"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<ScrollChild>
+                    <Frame name="DescriptionFrameScrollChildFrame" hidden="true">
+                        <Size>
+                            <AbsDimension x="300" y="334"/>
+                        </Size>
+                        <Layers>
+                            <Layer>
+                                <FontString name="DescriptionHeaderTextTitle" inherits="QuestTitleFont" justifyH="LEFT" hidden="true">
+                                    <Size>
+                                        <AbsDimension x="285" y="0"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="5" y="-10"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                                <FontString name="DescriptionHeaderText" inherits="QuestFont" justifyH="LEFT" hidden="true">
+                                    <Size>
+                                        <AbsDimension x="270" y="0"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" relativeTo="DescriptionHeaderTextTitle" relativePoint="BOTTOMLEFT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="-5"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                            <Frame name="TextAlphaDependentFrame">
+                                <Size>
+                                    <AbsDimension x="1" y="1"/>
+                                </Size>
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeTo="DescriptionHeaderText" relativePoint="BOTTOMLEFT">
+                                        <Offset>
+                                            <AbsDimension x="0" y="-5"/>
+                                        </Offset>
+                                    </Anchor>
+                                </Anchors>
+                                <Layers>
+                                    <Layer level="BACKGROUND">
+                                        <FontString name="DescriptionAppearanceTextTitle" inherits="QuestTitleFont" text="Внешность"  justifyH="LEFT" hidden="true">
+                                            <Size>
+                                                <AbsDimension x="285" y="18"/>
+                                            </Size>
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" relativeTo="DescriptionHeaderText" relativePoint="BOTTOMLEFT">
+                                                    <Offset>
+                                                        <AbsDimension x="0" y="-5"/>
+                                                    </Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                        </FontString>
+                                        <FontString name="DescriptionAppearanceText" inherits="QuestFont" justifyH="LEFT" hidden="true">
+                                            <Size>
+                                                <AbsDimension x="270" y="0"/>
+                                            </Size>
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" relativeTo="DescriptionAppearanceTextTitle" relativePoint="BOTTOMLEFT">
+                                                    <Offset>
+                                                        <AbsDimension x="0" y="-5"/>
+                                                    </Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                        </FontString>
+                                        <FontString name="DescriptionSpecialTextTitle" inherits="QuestTitleFont" text="Приметы"  justifyH="LEFT" hidden="true">
+                                            <Size>
+                                                <AbsDimension x="285" y="18"/>
+                                            </Size>
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" relativeTo="DescriptionAppearanceText" relativePoint="BOTTOMLEFT">
+                                                    <Offset>
+                                                        <AbsDimension x="0" y="-15"/>
+                                                    </Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                        </FontString>
+                                        <FontString name="DescriptionSpecialText" inherits="QuestFont" justifyH="LEFT" hidden="true">
+                                            <Size>
+                                                <AbsDimension x="270" y="0"/>
+                                            </Size>
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" relativeTo="DescriptionSpecialTextTitle" relativePoint="BOTTOMLEFT">
+                                                    <Offset>
+                                                        <AbsDimension x="0" y="-5"/>
+                                                    </Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                        </FontString>
+                                        <FontString name="DescriptionStatusTextTitle" inherits="QuestTitleFont" text="Статус"  justifyH="LEFT" hidden="true">
+                                            <Size>
+                                                <AbsDimension x="285" y="18"/>
+                                            </Size>
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" relativeTo="DescriptionSpecialText" relativePoint="BOTTOMLEFT">
+                                                    <Offset>
+                                                        <AbsDimension x="0" y="-15"/>
+                                                    </Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                        </FontString>
+                                        <FontString name="DescriptionStatusText" inherits="QuestFont" justifyH="LEFT" hidden="true">
+                                            <Size>
+                                                <AbsDimension x="270" y="0"/>
+                                            </Size>
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" relativeTo="DescriptionStatusTextTitle" relativePoint="BOTTOMLEFT">
+                                                    <Offset>
+                                                        <AbsDimension x="0" y="-5"/>
+                                                    </Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                        </FontString>
+                                        <FontString name="DescriptionOOCTextTitle" inherits="QuestTitleFont" text="ООС-примечания"  justifyH="LEFT" hidden="true">
+                                            <Size>
+                                                <AbsDimension x="285" y="18"/>
+                                            </Size>
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" relativeTo="DescriptionStatusText" relativePoint="BOTTOMLEFT">
+                                                    <Offset>
+                                                        <AbsDimension x="0" y="-15"/>
+                                                    </Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                        </FontString>
+                                        <FontString name="DescriptionOOCText" inherits="QuestFont" justifyH="LEFT" hidden="true">
+                                            <Size>
+                                                <AbsDimension x="270" y="0"/>
+                                            </Size>
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" relativeTo="DescriptionOOCTextTitle" relativePoint="BOTTOMLEFT">
+                                                    <Offset>
+                                                        <AbsDimension x="0" y="-5"/>
+                                                    </Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                                <Frames>                                    
+                                </Frames>
+                            </Frame>
+                            <Frame name="DescriptionSpacerFrame">
+                                <Size>
+                                    <AbsDimension x="5" y="25"/>
+                                </Size>
+                                <Anchors>
+                                    <Anchor point="TOP">
+                                        <Offset>
+                                            <AbsDimension x="0" y="0"/>
+                                        </Offset>
+                                    </Anchor>
+                                </Anchors>
+                            </Frame>
+                        </Frames>
+                        <Scripts>
+                            <OnShow function="DescriptionFrameScrollChildFrame_OnShow"/>
+                        </Scripts>
+                    </Frame>
+				</ScrollChild>
+			</ScrollFrame>
+        </Frames>
+		<Scripts>
+            <OnLoad function="DescriptionFrame_OnLoad"/>
+            <OnShow function="DescriptionFrame_OnShow"/>
+			<OnEvent function="DescriptionFrame_OnEvent"/>
+			<OnHide function="DescriptionFrame_OnHide"/>
+		</Scripts>
+	</Frame>
+</Ui>

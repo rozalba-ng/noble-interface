@@ -1,0 +1,408 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<Script file="Transmog_ItemPanel.lua"/>
+	<CheckButton name="Transmog_Transmog_macroPopupButtonTemplate" inherits="PopupButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				Transmog_IconPopupButton_OnClick(self, button);	
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+	<Frame name="Transmog_MacroPopupFrame" toplevel="true" parent="Transmog_MainPanel" movable="true" enableMouse="true" hidden="true">
+		<Size>
+			<AbsDimension x="297" y="298"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Transmog_MainPanel" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-17" y="-40"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\MacroFrame\MacroPopup-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\MacroFrame\MacroPopup-TopRight">
+					<Size>
+						<AbsDimension x="64" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\MacroFrame\MacroPopup-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\MacroFrame\MacroPopup-BotRight">
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontHighlightSmall" text="Введите название облика:">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="24" y="-21"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontHighlightSmall" text="MACRO_POPUP_CHOOSE_ICON">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="24" y="-69"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<EditBox name="Transmog_MacroPopupEditBox" letters="24" historyLines="0">
+				<Size>
+					<AbsDimension x="200" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="39" y="-35"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="Transmog_PopupNameLeft" file="Interface\ClassTrainerFrame\UI-ClassTrainer-FilterBorder">
+							<Size>
+								<AbsDimension x="12" y="29"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="-11" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.09375" top="0" bottom="1.0"/>
+						</Texture>
+						<Texture name="Transmog_PopupNameMiddle" file="Interface\ClassTrainerFrame\UI-ClassTrainer-FilterBorder">
+							<Size>
+								<AbsDimension x="175" y="29"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="Transmog_PopupNameLeft" relativePoint="RIGHT"/>
+							</Anchors>
+							<TexCoords left="0.09375" right="0.90625" top="0" bottom="1.0"/>
+						</Texture>
+						<Texture name="Transmog_PopupNameRight" file="Interface\ClassTrainerFrame\UI-ClassTrainer-FilterBorder">
+							<Size>
+								<AbsDimension x="12" y="29"/>
+							</Size>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="Transmog_PopupNameMiddle" relativePoint="RIGHT"/>
+							</Anchors>
+							<TexCoords left="0.90625" right="1.0" top="0" bottom="1.0"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEscapePressed>
+						Transmog_IconPopupFrame_CancelEdit();
+					</OnEscapePressed>
+					<OnEnterPressed>
+						if ( Transmog_MacroPopupOkayButton:IsEnabled() ~= 0 ) then
+							Transmog_IconPopupOkayButton_OnClick(Transmog_MacroPopupOkayButton);
+						end
+					</OnEnterPressed>
+				</Scripts>
+				<FontString inherits="ChatFontNormal"/>
+			</EditBox>
+			<ScrollFrame name="Transmog_MacroPopupScrollFrame" inherits="ClassTrainerListScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="296" y="195"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="Transmog_MacroPopupFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-39" y="-67"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnVerticalScroll>
+						FauxScrollFrame_OnVerticalScroll(self, offset, TRANSMOG_ICON_ROW_HEIGHT, Transmog_IconPopupFrame_Update);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+			<CheckButton name="Transmog_macroPopupButton1" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="24" y="-85"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton2" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton3" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton4" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton5" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton6" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="Transmog_macroPopupButton1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton7" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton8" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton9" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton8" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton10" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton9" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton11" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="Transmog_macroPopupButton6" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton12" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton11" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton13" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="13">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton12" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton14" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="14">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton13" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton15" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="15">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton14" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton16" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="16">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="Transmog_macroPopupButton11" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton17" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="17">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton16" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton18" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="18">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton17" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton19" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="19">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton18" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="Transmog_macroPopupButton20" inherits="Transmog_Transmog_macroPopupButtonTemplate" id="20">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="Transmog_macroPopupButton19" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="Transmog_PopupCancelButton" inherits="UIPanelButtonTemplate" text="CANCEL">
+				<Size>
+					<AbsDimension x="78" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="Transmog_MacroPopupFrame">
+						<Offset>
+							<AbsDimension x="-11" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Transmog_IconPopupFrame_CancelEdit()
+						PlaySound("gsTitleOptionOK");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="Transmog_MacroPopupOkayButton" inherits="UIPanelButtonTemplate" text="OKAY">
+				<Size>
+					<AbsDimension x="78" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="Transmog_PopupCancelButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Transmog_IconPopupOkayButton_OnClick();
+						PlaySound("gsTitleOptionOK");
+					</OnClick>
+				</Scripts>
+			</Button>
+            <Button name="Transmog_MacroPopupCodeButton" inherits="UIPanelButtonTemplate" text="Облик по коду">
+				<Size>
+					<AbsDimension x="116" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="Transmog_PopupCancelButton" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-81" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Transmog_CodeInputOnOff();
+						PlaySound("gsTitleOptionOK");
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				Transmog_IconPopupFrame_OnShow(self);
+			</OnShow>
+			<OnMouseWheel>
+				return;
+			</OnMouseWheel>
+		</Scripts>
+	</Frame>
+</Ui>

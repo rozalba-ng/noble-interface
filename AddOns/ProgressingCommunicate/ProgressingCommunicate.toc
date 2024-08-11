@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: |cffff9716[N]|r Прогрессинг аддон
+## Notes-ruRU: Отвечает за передачу информации прогрессинга между сервером и клиентом
+## DefaultState: Enabled
+## SavedVariablesPerCharacter: ProgressingData
+
+
+ProgressingCommunicate.lua

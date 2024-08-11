@@ -1,0 +1,7 @@
+﻿## Author: NobleGarden
+## Interface: 30300
+## Title: |cffff9716[N]|r Анимации
+## Version: 1.0
+## Notes-ruRU: Модуль анимаций персонажа.
+
+Animations.lua

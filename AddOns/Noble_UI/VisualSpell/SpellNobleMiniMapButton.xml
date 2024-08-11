@@ -1,0 +1,89 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Script file="MSpNobleMiniMapButton.lua" />
+	<Button name="SpNobleMiniMapButton" parent="Minimap" movable="true" enableMouse="true" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="33" y="33" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset x="0" y="0" />
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				SpNobleMiniMapButton:RegisterForDrag("LeftButton")
+				self:RegisterForClicks("LeftButtonUp","RightButtonUp")
+				self:SetScript("OnClick",function(_,arg1)
+					SpNobleMiniMapButton_OnClick()
+				end)
+				Spell_NobleMiniMapButtonPosition_LoadFromDefaults()
+			</OnLoad>
+			<OnDragStart>
+				SpNobleMiniMapButton_DraggingFrame:Show()
+			</OnDragStart>
+			<OnDragStop>
+				SpNobleMiniMapButton_DraggingFrame:Hide()
+			</OnDragStop>
+			<OnEnter>
+				SpNobleMiniMapButtonTooltip:ClearLines()
+				SpNobleMiniMapButtonTooltip:SetOwner(SpNobleMiniMapButton,"CENTER")
+				SpNobleMiniMapButtonTooltip:AddLine("Интерактивные возможности")
+                SpNobleMiniMapButtonTooltip:AddLine("/vsn")
+				SpNobleMiniMapButtonTooltip:AddLine("Нажмите для открытия меню")
+				SpNobleMiniMapButtonTooltip:Show()
+			</OnEnter>
+			<OnLeave>
+				SpNobleMiniMapButtonTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="SpNobleMiniMapButton_Icon" file="interface\ICONS\spell_arcane_massdispel">
+					<Size>
+						<AbsDimension x="20" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="7" y="-6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\Minimap\MiniMap-TrackingBorder">
+					<Size>
+						<AbsDimension x="56" y="56" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="SpNobleMiniMapButton_DraggingFrame" hidden="true">
+				<Scripts>
+					<OnUpdate>
+						SpNoble_Minimap_Update()
+					</OnUpdate>
+				</Scripts>
+			</Frame>
+			<GameTooltip name="SpNobleMiniMapButtonTooltip" inherits="GameTooltipTemplate">
+				<Layers>
+					<Layer>
+						<FontString font="Interface\addons\D3Orbs2\fonts\Of Wildflowers and Wings.ttf">
+							<FontHeight val="16"></FontHeight>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+					</OnLoad>
+				</Scripts>
+			</GameTooltip>
+		</Frames>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+	</Button>
+</Ui>

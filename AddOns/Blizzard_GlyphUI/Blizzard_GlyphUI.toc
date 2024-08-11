@@ -1,0 +1,14 @@
+## Interface: 30000
+## Title: Blizzard Glyph UI
+## Notes:  Get some cool tats and mod your spells.
+## Secure: 1
+## Author: Blizzard Entertainment
+## Version: 1.0
+## SavedVariablesPerCharacter: ProgressingData
+## SavedVariablesPerCharacter: ServerData
+## DefaultState: Enabled
+
+Blizzard_GlyphUI.lua
+MerchantSearch.lua
+Blizzard_GlyphUI.xml
+

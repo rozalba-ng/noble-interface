@@ -1,0 +1,14 @@
+## Interface: 30300
+## Title: |cffff9716[N] |rСистемный модуль
+## SavedVariables: AIO_sv, AIO_sv_Addons
+## SavedVariablesPerCharacter: AIO_sv_char
+
+#dependencies
+Dep_LibWindow-1.1\LibStub.lua
+Dep_LibWindow-1.1\LibWindow-1.1\LibWindow-1.1.lua
+Dep_Smallfolk\smallfolk.lua
+lualzw-zeros\lualzw.lua
+queue.lua
+
+#core
+AIO.lua

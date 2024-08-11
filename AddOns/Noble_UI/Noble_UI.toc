@@ -1,0 +1,24 @@
+## Interface: 30300
+## Title: |cffff9716[N] |rИнтерфейс
+## Notes-ruRU: Модуль интерфейса
+## Version: 1.0
+## DefaultState: Enabled
+## Dependencies: AIO_Client
+## SavedVariablesPerCharacter: SpellGroup
+## SavedVariablesPerCharacter: SpellFavourites
+## SavedVariablesPerCharacter: AnimFavourites
+## SavedVariablesPerCharacter: Save_tool
+## SavedVariablesPerCharacter: DMLevel, GMLevel
+## SavedVariables: Roleplay_Centers, EncounterJournalNewsTable, EncounterJournalServerInfo, EncounterJournalTechInfo, EncounterJournalTechFirstPlace, EncounterJournalServerFirstPlace, EJ_ChashTable
+
+
+
+
+embeds.xml
+Core.lua
+
+VisualSpell\VisualSpellNoble.lua
+VisualSpell\AnimatorNoble.lua
+VisualSpell\SpellNobleMiniMapButton.xml
+
+talkingheadui\talkingheadui.lua

@@ -1,0 +1,7 @@
+## Author: Mayday
+## Interface: 30300
+## Title: |cffff9716[N] |rАвтоматизированная очередь
+## Notes-ruRU: Простой рандом для твоей очереди!
+## DefaultState: Enabled
+## Version: 1.0
+RaidQueue.lua

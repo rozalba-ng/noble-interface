@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: |cffff9716[N]|r Управление спутником
+## Notes-ruRU: Меню контроля личного спутника
+## DefaultState: Enabled
+## Dependencies: AIO_Client
+
+PetControl.lua
+PetControl.xml

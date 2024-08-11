@@ -1,0 +1,240 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <Script file="PlayerContainer.lua"/>
+    <Button name="PlayerContainerFrameItemButtonTemplate" inherits="ItemButtonTemplate" hidden="true" virtual="true">
+        <Anchors>
+            <Anchor point="BOTTOMRIGHT">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Frames>
+            <Cooldown name="$parentCooldown" inherits="CooldownFrameTemplate"/>
+        </Frames>
+        <Scripts>
+            <OnClick>
+                if ( not ( IsModifierKeyDown() or IsShiftKeyDown() ) ) then
+                    PlayerContainerFrameItemButton_OnClick(arg1);
+                end
+            </OnClick>
+            <PostClick>
+                PlayerContainerFrameItemButton_OnModifiedClick(arg1);
+            </PostClick>
+            <OnLoad>
+                PlayerContainerFrameItemButton_OnLoad();
+            </OnLoad>
+            <OnEnter>
+                PlayerContainerFrameItemButton_OnEnter(this);
+            </OnEnter>
+            <OnLeave>
+                --this.updateTooltip = nil;
+                GameTooltip:ClearLines()
+                GameTooltip:Hide();
+            </OnLeave>
+            <OnHide>
+                if ( this.hasStackSplit and (this.hasStackSplit == 1) ) then
+                    StackSplitFrame:Hide();
+                end
+                
+            </OnHide>
+            <OnShow>
+
+            </OnShow>
+            <OnDragStart>
+                if ( not ( IsModifierKeyDown() or IsShiftKeyDown() ) ) then
+                    PlayerContainerFrameItemButton_OnClick(arg1);
+                end            
+            </OnDragStart>
+            <OnReceiveDrag>
+                
+            </OnReceiveDrag>
+            <OnUpdate>
+                PlayerContainerFrameItemButton_OnUpdate(arg1);
+            </OnUpdate>
+            <OnEvent>
+                if ( GameTooltip:IsOwned(this) ) then
+                    PlayerContainerFrameItemButton_OnEnter(this);
+                end
+            </OnEvent>
+        </Scripts>
+    </Button>
+    <Frame name="PlayerContainerFrame" frameStrata="HIGH" toplevel="true" moveable="true" enableMouse="true" id="100" hidden="true" parent="LootFrame">
+        <Size>
+			<AbsDimension x="256" y="256"/>
+		</Size>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentPortrait">
+                    <Size>
+                        <AbsDimension x="40" y="40"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="7" y="-5"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture name="$parentBackgroundTop" file="Interface\ContainerFrame\UI-Bag-Components">
+                    <Size>
+                        <AbsDimension x="256" y="512"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPRIGHT" relativeTo="$parent">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+                <Texture name="$parentBackgroundMiddle1" file="Interface\ContainerFrame\UI-Bag-Components">
+                    <Size>
+                        <AbsDimension x="256" y="512"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parentBackgroundTop" relativePoint="BOTTOM"/>
+                    </Anchors>
+                    <TexCoords left="0" right="1" top="0.3515625" bottom="0.8515625"/>
+                </Texture>
+                <Texture name="$parentBackgroundMiddle2" file="Interface\ContainerFrame\UI-Bag-Components" hidden="true">
+                    <Size>
+                        <AbsDimension x="256" y="256"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parentBackgroundMiddle1" relativePoint="BOTTOM"/>
+                    </Anchors>
+                    <TexCoords left="0" right="1" top="0.353515625" bottom="0.8515625"/>
+                </Texture>
+                <Texture name="$parentBackgroundBottom" file="Interface\ContainerFrame\UI-BackpackBackground">
+                    <Size>
+                        <AbsDimension x="256" y="30"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parentBackgroundMiddle1" relativePoint="BOTTOM"/>
+                    </Anchors>
+                    <TexCoords left="0" right="1" top="0.8125" bottom="0.9296875"/>
+                </Texture>
+                <FontString name="$parentName" inherits="GameFontHighlight">
+                    <Size>
+                        <AbsDimension x="112" y="12"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="47" y="-10"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <Texture name="$parentBackground1Slot" file="Interface\ContainerFrame\UI-Bag-1Slot" hidden="true">
+                    <Size>
+                        <AbsDimension x="99" y="74"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPRIGHT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <TexCoords left="0" right="0.7734375" top="0" bottom="0.578125"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentItem1" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem2" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem3" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem4" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem5" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem6" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem7" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem8" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem9" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem10" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem11" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem12" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem13" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem14" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem15" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem16" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem17" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem18" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem19" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem20" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem21" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem22" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem23" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem24" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem25" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem26" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem27" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem28" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem29" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem30" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem31" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem32" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem33" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem34" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem35" inherits="PlayerContainerFrameItemButtonTemplate"/>
+            <Button name="$parentItem36" inherits="PlayerContainerFrameItemButtonTemplate"/>
+
+            <Button name="$parentPortraitButton">
+                <Size>
+                    <AbsDimension x="40" y="40"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="7" y="-5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        GameTooltip:SetOwner(this, "ANCHOR_LEFT");
+                        
+                        GameTooltip:AppendText(" "..NORMAL_FONT_COLOR_CODE.."( Gryphonheart Items )"..FONT_COLOR_CODE_CLOSE);
+                        
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="-1"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        this:GetParent():Hide();
+                        HideUIPanel(LootFrame);
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnEvent>
+                PlayerContainerFrame_OnEvent();
+            </OnEvent>
+            <OnLoad>
+                PlayerContainerFrame_OnLoad();            
+            </OnLoad>
+            <OnHide>
+                PlayerContainerFrame_OnHide();
+            </OnHide>
+            <OnShow>
+                PlayerContainerFrame_OnShow(this);
+            </OnShow>
+        </Scripts>
+    </Frame>
+</Ui>

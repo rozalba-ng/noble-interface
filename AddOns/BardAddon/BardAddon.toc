@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: |cffff9716[N]|r Музыкальный аддон
+## Notes-ruRU: Дополнения к работе бард-аддона
+## DefaultState: Enabled
+## Dependencies: AIO_Client
+
+BardAddon.lua

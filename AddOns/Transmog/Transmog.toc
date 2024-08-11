@@ -1,0 +1,31 @@
+## Interface: 30300
+## Title: |cffff9716[N] |rТрансмогрификация
+## Notes-ruRU: Модуль трансмогрификации
+## Version: 1.0
+## DefaultState: Enabled
+## Dependencies: AIO_Client
+## SavedVariablesPerCharacter: Transmog_save1
+## SavedVariablesPerCharacter: Transmog_save2
+## SavedVariablesPerCharacter: Transmog_save3
+## SavedVariablesPerCharacter: Transmog_SavedAura
+## SavedVariablesPerCharacter: Transmog_SavedBarber
+## SavedVariablesPerCharacter: Transmog_Settings
+## SavedVariables: Transmog_DefaultPresetName
+## SavedVariables: Transmog_DefaultPresetCode
+## SavedVariables: Transmog_BagsPresetName
+## SavedVariables: Transmog_BagsPresetCode
+## SavedVariables: Transmog_BeltPresetName
+## SavedVariables: Transmog_BeltPresetCode
+## SavedVariables: Transmog_EnchantsPresetName
+## SavedVariables: Transmog_EnchantsPresetCode
+
+
+UITemplates.xml
+
+
+Transmog.lua
+ModelUpdate.lua
+ButtonFrames.lua
+SearchModule.lua
+Barbershop.lua
+Transmog_ItemPanel.xml

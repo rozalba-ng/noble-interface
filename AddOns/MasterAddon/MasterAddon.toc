@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: |cffff9716[N] |rМастер-аддон
+## Notes-ruRU: Один аддон чтобы править другими.
+## DefaultState: Enabled
+## Dependencies: AIO_Client
+## SavedVariablesPerCharacter: MasterAddon
+
+MasterAddon.lua

@@ -1,0 +1,31 @@
+------------------------------------------------------------------------
+r36 | cyprias | 2010-08-08 23:58:55 +0000 (Sun, 08 Aug 2010) | 1 line
+Changed paths:
+   A /tags/1.7.1beta (from /trunk:35)
+
+Tagged as 1.7.1beta.
+------------------------------------------------------------------------
+r35 | cyprias | 2010-08-08 23:58:27 +0000 (Sun, 08 Aug 2010) | 1 line
+Changed paths:
+   M /trunk/core.lua
+
+All 7 editboxs should have unlimited length now. I got a report that someone's chatframe is using #2-7 editboxes and UCM wasn't changing them. I'm not getting this bug so hopefully this helps.
+------------------------------------------------------------------------
+r33 | cyprias | 2010-08-04 22:55:25 +0000 (Wed, 04 Aug 2010) | 1 line
+Changed paths:
+   M /trunk/core.lua
+
+Saving default max letters/bytes (GetMaxLetters/GetMaxBytes) on login instead of assuming they're 255 & 256.
+------------------------------------------------------------------------
+r32 | cyprias | 2010-08-04 22:50:52 +0000 (Wed, 04 Aug 2010) | 1 line
+Changed paths:
+   M /trunk/core.lua
+
+When the editbox's chatType changes to BN_WHISPER/BN_CONVERSATION. We set the max letters/bytes to the default (254). Then return them to unlimited when it's changed to non-BN chat types. I don't use realID so I can't confirm this works. 
+------------------------------------------------------------------------
+r31 | cyprias | 2010-08-04 22:32:38 +0000 (Wed, 04 Aug 2010) | 1 line
+Changed paths:
+   M /trunk/core.lua
+
+Default profile should be "Default" instead of "Char - Server".
+------------------------------------------------------------------------
