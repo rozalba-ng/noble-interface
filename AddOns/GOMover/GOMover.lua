@@ -67,7 +67,7 @@ EditBox_Move:SetSize(30,30)
 EditBox_Move:SetPoint("CENTER",GOM_ButtonHolder,CenterForButtons_X +2 ,CenterForButtons_Y -40)	
 EditBox_Move:SetAutoFocus(false)
 EditBox_Move:Insert(15)
-EditBox_Move:SetMaxLetters(2)
+EditBox_Move:SetMaxLetters(4)
 EditBox_Move:SetScript("OnEscapePressed", UnFoc);
 EditBox_Move:SetScript("OnEnterPressed", UnFoc);
 EditBox_Move:SetScript("OnEnter",function(self)
@@ -81,6 +81,15 @@ MoveLabel:SetPoint("CENTER",CenterForButtons_X+30,CenterForButtons_Y+40)
 --MoveLabel:SetText("Передвижение")
 MoveLabel:Show();
 
+local function validateEditBoxNumber(inputEditBox)
+	local input_number = tonumber(inputEditBox:GetText())
+	if input_number < 0
+		or input_number == nil then
+			inputEditBox:SetText("0")
+	elseif input_number > 100 then
+			inputEditBox:SetText("100")
+	end
+end
 
 local Button_MoveToForward = CreateFrame("BUTTON", "B_Forward", GOM_ButtonHolder, "SecureHandlerClickTemplate");
 Button_MoveToForward:SetNormalTexture("Interface/BUTTONS/UI-ScrollBar-ScrollUpButton-Up")
@@ -89,10 +98,8 @@ Button_MoveToForward:SetPushedTexture("Interface/BUTTONS/UI-ScrollBar-ScrollUpBu
 Button_MoveToForward:SetSize(35,35)
 Button_MoveToForward:SetPoint("CENTER",GOM_ButtonHolder,CenterForButtons_X + 0, CenterForButtons_Y + 18)	
 
-Button_MoveToForward:SetScript("OnClick",function(self)	
-	if tonumber(EditBox_Move:GetText()) < 0 or tonumber(EditBox_Move:GetText()) > 30 then
-		EditBox_Move:SetText(30)
-	end
+Button_MoveToForward:SetScript("OnClick",function(self)
+	validateEditBoxNumber(EditBox_Move)
 	MoveActiveGO(1,EditBox_Move:GetText())
   end)
 Button_MoveToForward:SetScript("OnEnter",function(self)
@@ -111,9 +118,7 @@ Button_MoveToBackward:SetPushedTexture("Interface/BUTTONS/UI-ScrollBar-ScrollDow
 Button_MoveToBackward:SetSize(35,35)
 Button_MoveToBackward:SetPoint("CENTER",GOM_ButtonHolder,CenterForButtons_X + 0,CenterForButtons_Y + -18)	
 Button_MoveToBackward:SetScript("OnClick",function(self)
-	if tonumber(EditBox_Move:GetText()) < 0 or tonumber(EditBox_Move:GetText()) > 15 then
-		EditBox_Move:SetText(15)
-	end
+	validateEditBoxNumber(EditBox_Move)
 	MoveActiveGO(2,EditBox_Move:GetText())
   end)
 Button_MoveToBackward:SetScript("OnEnter",function(self)
@@ -132,9 +137,7 @@ Button_MoveToRight:SetPushedTexture("Interface\\AddOns\\GOMover\\img\\UI-ScrollB
 Button_MoveToRight:SetSize(35,35)
 Button_MoveToRight:SetPoint("CENTER",GOM_ButtonHolder,CenterForButtons_X + 18,CenterForButtons_Y + 0)	
 Button_MoveToRight:SetScript("OnClick",function(self)
-	if tonumber(EditBox_Move:GetText()) < 0 or tonumber(EditBox_Move:GetText()) > 15 then
-		EditBox_Move:SetText(15)
-	end
+	validateEditBoxNumber(EditBox_Move)
 	MoveActiveGO(3,EditBox_Move:GetText())
   end)
 Button_MoveToRight:SetScript("OnEnter",function(self)
@@ -153,9 +156,7 @@ Button_MoveToLeft:SetPushedTexture("Interface\\AddOns\\GOMover\\img\\UI-ScrollBa
 Button_MoveToLeft:SetSize(35,35)
 Button_MoveToLeft:SetPoint("CENTER",GOM_ButtonHolder,CenterForButtons_X + -18, CenterForButtons_Y + 0)	
 Button_MoveToLeft:SetScript("OnClick",function(self)
-	if tonumber(EditBox_Move:GetText()) < 0 or tonumber(EditBox_Move:GetText()) > 15 then
-		EditBox_Move:SetText(15)
-	end
+	validateEditBoxNumber(EditBox_Move)
 	MoveActiveGO(4,EditBox_Move:GetText())
   end)
 Button_MoveToLeft:SetScript("OnEnter",function(self)
